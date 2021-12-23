@@ -1,0 +1,71 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}Хранилище дистрибутивов{% endblock %}
+{% block styles %}<link rel = "stylesheet" type = "text/css" href = "{% static 'css/main.css' %}">{% endblock %}
+{% block content %}
+    <header>
+        <div id = "logo">
+            <img src = "{% static 'img/logo.svg' %}" alt = "Логотип">
+            <span>Хранилище дистрибутивов</span>
+        </div>
+        <form id = "search">
+            <input type = "search" class = "font_18_21" placeholder = "Поиск...">
+            <input type = "image" src="{% static 'img/search.svg' %}" alt = "Найти">
+        </form>
+    </header>
+    <aside>
+        <nav>
+            <a href = "#" id = "nav_main">
+                <img src = "{% static 'img/main_page.svg' %}">
+                <span class = "font_18_21">Главная</span>
+            </a>
+            <a href = "#" id = "nav_history_of_builds">
+                <img src = "{% static 'img/history_of_builds.svg' %}">
+                <span class = "font_18_21">История сборок</span>
+            </a>
+            <div id = "nav_favourites">
+                <a href = "#" class = "font_18_21">
+                    <img src = "{% static 'img/favourites.svg' %}">
+                    <span>Избранное</span>
+                </a>
+                <details>
+                    <summary></summary>
+                    <div id = "details">
+                        <a href = "#">
+                            <span class = "font_11_13">Синергет / CSS / 4.5.5 /</span>
+                            <span class = "font_14_16">4.5.5505050</span>
+                        </a>
+                        <a href = "#">
+                            <span class = "font_11_13">Синергет /</span>
+                            <span class = "font_14_16">CSS</span>
+                        </a>
+                        <a href = "#">
+                            <span class = "font_11_13">Синергет / CSS / 4.5.5 /</span>
+                            <span class = "font_14_16">4.5.5505050</span>
+                        </a>
+                        <a href = "#">
+                            <span class = "font_11_13">Синергет / CSS / 4.5.5 /</span>
+                            <span class = "font_14_16">4.5.5505050</span>
+                        </a>
+                        <a href = "#">
+                            <span class = "font_11_13">Синергет / CSS / 4.5.5 /</span>
+                            <span class = "font_14_16">4.5.5505050</span>
+                        </a>
+                        <a href = "#">
+                            <span class = "font_11_13">Синергет / CSS / 4.5.5 /</span>
+                            <span class = "font_14_16">4.5.5505050</span>
+                        </a>
+                    </div>
+                </details>
+            </div>
+        </nav>
+        <div id = "profile">
+            <a id = "profile_enter" href = "#">
+                <img src = "{% static 'img/profile.svg' %}">
+                <span class = "font_14_16">Константиновский Варфаламей Константинович</span>
+            </a>
+            <a id = "profile_exit" href = "#" class = "font_11_13">Выйти</a>
+        </div>
+    </aside>
+    <main></main>
+{% endblock %}
