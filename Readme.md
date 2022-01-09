@@ -1,4 +1,4 @@
-# Distributions Repository | Хранилище Дистрибутивов
+# Distributions Repository
 
 1. [English version](#English-version)
     1. [Instruction](#Instruction)
