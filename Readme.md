@@ -28,7 +28,7 @@ Later:(
 1. Open the catalog in the terminal where you want to place the project
 2. Run the following commands:
 
-'''sh
+'''console
 git clone https://github.com/Maximum64X/DistributionsRepository
 python3 -m venv "address_of_the_project/venv"
 source venv/bin/activate
@@ -56,7 +56,7 @@ python3 manage.py runserver
 1. Откройте в терминале каталог в котором хотите разместить проект
 2. Запустите следующие команды:
 
-'''sh
+'''console
 git clone https://github.com/Maximum64X/DistributionsRepository
 python3 -m venv "адрес_проекта/venv"
 source venv/bin/activate
