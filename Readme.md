@@ -2,12 +2,12 @@
 
 1. [English version](#English-version)
     1. [Instruction](#Instruction)
-        1. [Windows](#Windows)
-        1. [Linux](#Linux)
+        1. [Windows](#Windows_EN)
+        1. [Linux](#Linux_EN)
 2. [Русская версия](#Русская-версия)
     1. [Инструкция](#Инструкция)
-        1. [Windows](#Windows)
-        1. [Linux](#Linux)
+        1. [Windows](#Windows_RU)
+        1. [Linux](#Linux_RU)
 
 ## English version
 
@@ -19,11 +19,11 @@ Currently 95% frontend of main page is made
 
 ### Instruction
 
-#### Windows
+#### Windows_EN
 
 Later:(
 
-#### Linux
+#### Linux_EN
 
 1. Open the catalog in the terminal where you want to place the project
 2. Run the following commands:
@@ -47,11 +47,11 @@ python3 manage.py runserver
 
 ### Инструкция
 
-#### Windows
+#### Windows_RU
 
 Позже:(
 
-#### Linux
+#### Linux_RU
 
 1. Откройте в терминале каталог в котором хотите разместить проект
 2. Запустите следующие команды:
