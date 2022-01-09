@@ -1,12 +1,12 @@
 {% extends 'base.html' %}
 {% load static %}
-{% block title %}Хранилище дистрибутивов{% endblock %}
+{% block title %}Хранилище дистрибутивов | Главная{% endblock %}
 {% block styles %}<link rel = "stylesheet" type = "text/css" href = "{% static 'css/main.css' %}">{% endblock %}
 {% block content %}
     <header>
         <div id = "logo">
             <img src = "{% static 'img/logo.svg' %}" alt = "Логотип">
-            <span>Хранилище дистрибутивов</span>
+            <h1>Хранилище дистрибутивов</h1>
         </div>
         <form id = "search">
             <input type = "search" class = "font_18_21" placeholder = "Поиск...">
@@ -16,17 +16,17 @@
     <aside>
         <nav>
             <a href = "#" id = "nav_main">
-                <img src = "{% static 'img/main_page.svg' %}">
-                <span class = "font_18_21">Главная</span>
+                <img src = "{% static 'img/main_page.svg' %}" alt = "Иконка для надписи">
+                <h2 class = "font_18_21">Главная</h2>
             </a>
             <a href = "#" id = "nav_history_of_builds">
-                <img src = "{% static 'img/history_of_builds.svg' %}">
-                <span class = "font_18_21">История сборок</span>
+                <img src = "{% static 'img/history_of_builds.svg' %}"  alt = "Иконка для надписи">
+                <h2 class = "font_18_21">История сборок</h2>
             </a>
             <div id = "nav_favourites">
                 <a href = "#" class = "font_18_21">
-                    <img src = "{% static 'img/favourites.svg' %}">
-                    <span>Избранное</span>
+                    <img src = "{% static 'img/favourites.svg' %}" alt = "Иконка для надписи">
+                    <h2 class = "font_18_21">Избранное</h2>
                 </a>
                 <details>
                     <summary></summary>
@@ -61,11 +61,72 @@
         </nav>
         <div id = "profile">
             <a id = "profile_enter" href = "#">
-                <img src = "{% static 'img/profile.svg' %}">
-                <span class = "font_14_16">Константиновский Варфаламей Константинович</span>
+                <img src = "{% static 'img/profile.svg' %}" alt = "Иконка для надписи">
+                <h2 class = "font_14_16">Константиновский Варфаламей Константинович</h2>
             </a>
             <a id = "profile_exit" href = "#" class = "font_11_13">Выйти</a>
         </div>
     </aside>
-    <main></main>
+    <main>
+        <section id = "main_favourites">
+            <h3 class = "font_18_21">Избранное</h3>
+            <div id = "view_all"><a href = "#" class = "font_14_16">Смотреть все</a></div>
+            <a href = "#" class = "folder">
+                <img src = "{% static 'img/folder.svg' %}" alt = "Папка">
+                <span class = "number">450</span>
+                <span class = "font_11_13">Синергет / CSS / 4.5.5 /</span>
+                <span class = "font_22_26">4.5.5505050</span>
+                <span class = "font_11_13 date">Последнее изменение: 07.09.2021 12:20</span>
+            </a><!--
+            --><a href = "#" class = "folder">
+                <img src = "{% static 'img/folder.svg' %}" alt = "Папка">
+                <span class = "number">450</span>
+                <span class = "font_11_13">Синергет /</span>
+                <span class = "font_22_26">CSS</span>
+                <span class = "font_11_13 date">Последнее изменение: 07.09.2021 12:20</span>
+            </a><!--
+            --><a href = "#" class = "folder">
+                <img src = "{% static 'img/folder.svg' %}" alt = "Папка">
+                <span class = "number">450</span>
+                <span class = "font_11_13">Синергет / CSS / 4.5.5 /</span>
+                <span class = "font_22_26">4.5.5505050</span>
+                <span class = "font_11_13 date">Последнее изменение: 07.09.2021 12:20</span>
+            </a><!--
+            --><a href = "#" class = "folder">
+                <img src = "{% static 'img/folder.svg' %}" alt = "Папка">
+                <span class = "number">450</span>
+                <span class = "font_11_13">Синергет / CSS / 4.5.5 /</span>
+                <span class = "font_22_26">4.5.5505050</span>
+                <span class = "font_11_13 date">Последнее изменение: 07.09.2021 12:20</span>
+            </a><!--
+            --><a href = "#" class = "folder">
+                <img src = "{% static 'img/folder.svg' %}" alt = "Папка">
+                <span class = "number">450</span>
+                <span class = "font_11_13">Синергет / CSS / 4.5.5 /</span>
+                <span class = "font_22_26">4.5.5505050</span>
+                <span class = "font_11_13 date">Последнее изменение: 07.09.2021 12:20</span>
+            </a>
+        </section>
+        <section id = "files">
+            <h3 class = "font_18_21">Файлы</h3>
+            <a href = "#" class = "folder">
+                <img src = "{% static 'img/folder.svg' %}" alt = "Папка">
+                <span class = "number">450</span>
+                <span class = "font_22_26">Синергет</span>
+                <span class = "font_11_13 date">Последнее изменение: 07.09.2021 12:20</span>
+            </a><!--
+            --><a href = "#" class = "folder">
+                <img src = "{% static 'img/folder.svg' %}" alt = "Папка">
+                <span class = "number">450</span>
+                <span class = "font_22_26">Мобильные</span>
+                <span class = "font_11_13 date">Последнее изменение: 07.09.2021 12:20</span>
+            </a><!--
+            --><a href = "#" class = "folder">
+                <img src = "{% static 'img/folder.svg' %}" alt = "Папка">
+                <span class = "number">450</span>
+                <span class = "font_22_26">Эмуляторы</span>
+                <span class = "font_11_13 date">Последнее изменение: 07.09.2021 12:20</span>
+            </a>
+        </section>
+    </main>
 {% endblock %}

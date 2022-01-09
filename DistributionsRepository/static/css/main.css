@@ -1,3 +1,24 @@
+@font-face {
+    font-family: 'Rubik';
+    font-style: normal;
+    font-weight: normal;
+    src: local('Rubik'),
+        url('../fonts/Rubik-Regular.woff2') format('woff2');
+}
+@font-face {
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: normal;
+    src: local('Roboto'),
+        url('../fonts/Roboto-Regular.woff2') format('woff2');
+}
+@font-face {
+    font-family: 'Ubuntu';
+    font-style: normal;
+    font-weight: normal;
+    src: local('Ubuntu'),
+        url('../fonts/Ubuntu-Regular.woff2') format('woff2');
+}
 body {
     min-height: 100vh;
     width: 100%;
@@ -28,12 +49,18 @@ main {
     border: 1px solid #F1F1F1;
     box-shadow: 0px 0px 14px rgba(188, 194, 217, 0.1);
     border-radius: 10px 10px 0px 0px;
+    padding: 29px;
     max-width: 1280px;
 }
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+}
+.font_22_26 {
+    font: 22px Roboto;
+    line-height: 26px;
+    color: #161616;
 }
 .font_18_21 {
     font: 18px Roboto;
@@ -61,7 +88,7 @@ a {
 #logo > img {
     margin: 0 6px 0 0;
 }
-#logo > span {
+#logo > h1 {
     width: 101px;
     font-family: Ubuntu;
     font-size: 14px;
@@ -104,7 +131,7 @@ nav > a {
 #nav_main > img {
     margin: 0 18px 0 0;
 }
-#nav_main > span {
+#nav_main > h2 {
     color: #3361FF;
 }
 #nav_history_of_builds {
@@ -116,7 +143,6 @@ nav > a {
 }
 #nav_favourites {
     display: flex;
-
     width: 154px;
 }
 #nav_favourites > a {
@@ -151,7 +177,6 @@ summary::before {
     transition: 0.25s transform ease;
 }
 #details {
-    width: 247px;
     position: relative;
     right: 128px;
 }
@@ -178,4 +203,66 @@ summary::before {
 }
 #profile_exit {
     padding: 5px 0 0 35px;
+}
+section {
+    margin: 0 0 30px 0;
+}
+#view_all {
+    text-align: right;
+    position: relative;
+    top: -12px;
+    margin: 0 0 14px 0;
+}
+#view_all > a {
+    color: #A2A6B6;
+}
+.folder {
+    display: inline-block;
+    width: 220px;
+    height: 190px;
+    border-radius: 20px;
+    background-color: #F8F9FD;
+    border: 1px solid #F1F1F1;
+    padding: 15px 13px;
+    margin: 0 30px 30px 0;
+}
+#main_favourites > .folder:nth-child(5n + 2) {
+    margin: 0;
+}
+.folder > span {
+    display: block;
+    position: relative;
+    bottom: 22px;
+}
+span.number {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    background: #563BFF;
+    height: 35px;
+    width: 35px;
+    border-radius: 40px;
+    left: 42px;
+    bottom: 32px;
+    font-family: Rubik;
+    font-size: 14px;
+    line-height: 17px;
+    color: #FFFFFF;
+}
+span.date {
+    width: 122px;
+    bottom: 10px;
+}
+#files > h3 {
+    margin: 0 0 30px 0;
+}
+#files > .folder > .date {
+    top: 3px;
+}
+#files > .folder > span {
+    bottom: 9px;
+}
+#files > .folder > span.number {
+    bottom: 32px;
 }
