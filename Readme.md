@@ -15,7 +15,7 @@ Web interface for viewing brief statistics, downloading and editing various vers
 
 ![Screenshot of main page](./main.png "Main page")
 
-Currently 95% frontend of main page is made
+Currently 95.5% frontend of main page is made
 
 ### Instruction
 
@@ -43,7 +43,7 @@ python3 manage.py runserver
 
 ![Скриншот главной страницы](./main.png "Главная страница")
 
-На данный момент около 95% интерфейса главной страницы готово
+На данный момент около 95,5% интерфейса главной страницы готово
 
 ### Инструкция
 

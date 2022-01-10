@@ -266,3 +266,35 @@ span.date {
 #files > .folder > span.number {
     bottom: 32px;
 }
+.like, .dislike, .downloads {
+    position: relative;
+    float: left;
+    font-family: Rubik;
+    font-size: 16px;
+    line-height: 19px;
+    color: #161616;
+}
+img.like {
+    bottom: 164px;
+    left: 120px;
+}
+span.like {
+    bottom: 167px;
+    left: 125px;
+}
+img.dislike {
+    bottom: 164px;
+    left: 136px;
+}
+span.dislike {
+    bottom: 167px;
+    left: 141px;
+}
+img.downloads {
+    bottom: 137px;
+    left: 103px;
+}
+span.downloads {
+    bottom: 139px;
+    left: 107px;
+}
