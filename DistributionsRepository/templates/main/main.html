@@ -127,24 +127,14 @@
         </section>
         <section id = "files">
             <h3 class = "font_18_21">Файлы</h3>
-            <a href = "#" class = "folder">
-                <img src = "{% static 'img/folder.svg' %}" alt = "Папка">
-                <span class = "number">450</span>
-                <span class = "font_22_26">Синергет</span>
-                <span class = "font_11_13 date">Последнее изменение: 07.09.2021 12:20</span>
-            </a><!--
-            --><a href = "#" class = "folder">
-                <img src = "{% static 'img/folder.svg' %}" alt = "Папка">
-                <span class = "number">450</span>
-                <span class = "font_22_26">Мобильные</span>
-                <span class = "font_11_13 date">Последнее изменение: 07.09.2021 12:20</span>
-            </a><!--
-            --><a href = "#" class = "folder">
-                <img src = "{% static 'img/folder.svg' %}" alt = "Папка">
-                <span class = "number">450</span>
-                <span class = "font_22_26">Эмуляторы</span>
-                <span class = "font_11_13 date">Последнее изменение: 07.09.2021 12:20</span>
-            </a>
+            {% for folder, modification_time in folders.items %}<!--
+                --><a href = "#" class = "folder">
+                    <img src = "{% static 'img/folder.svg' %}" alt = "Папка">
+                    <span class = "number">450</span>
+                    <span class = "font_22_26">{{folder}}</span>
+                    <span class = "font_11_13 date">Последнее изменение: {{modification_time}}</span>
+                </a><!--
+            -->{% endfor %}
         </section>
     </main>
 {% endblock %}
