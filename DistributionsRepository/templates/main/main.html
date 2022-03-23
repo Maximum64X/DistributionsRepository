@@ -15,7 +15,7 @@
     </header>
     <aside>
         <nav>
-            <a href = "#" id = "nav_main">
+            <a href = "http://{{ request.get_host }}" id = "nav_main">
                 <img src = "{% static 'img/main_page.svg' %}" alt = "Иконка для надписи">
                 <h2 class = "font_18_21">Главная</h2>
             </a>
@@ -31,27 +31,27 @@
                 <details>
                     <summary></summary>
                     <div id = "details">
-                        <a href = "#">
+                        <a href = "#" class = "favourite">
                             <span class = "font_11_13">Синергет / CSS / 4.5.5 /</span>
                             <span class = "font_14_16">4.5.5505050</span>
                         </a>
-                        <a href = "#">
+                        <a href = "#" class = "favourite">
                             <span class = "font_11_13">Синергет /</span>
                             <span class = "font_14_16">CSS</span>
                         </a>
-                        <a href = "#">
+                        <a href = "#" class = "favourite">
                             <span class = "font_11_13">Синергет / CSS / 4.5.5 /</span>
                             <span class = "font_14_16">4.5.5505050</span>
                         </a>
-                        <a href = "#">
+                        <a href = "#" class = "favourite">
                             <span class = "font_11_13">Синергет / CSS / 4.5.5 /</span>
                             <span class = "font_14_16">4.5.5505050</span>
                         </a>
-                        <a href = "#">
+                        <a href = "#" class = "favourite">
                             <span class = "font_11_13">Синергет / CSS / 4.5.5 /</span>
                             <span class = "font_14_16">4.5.5505050</span>
                         </a>
-                        <a href = "#">
+                        <a href = "#" class = "favourite">
                             <span class = "font_11_13">Синергет / CSS / 4.5.5 /</span>
                             <span class = "font_14_16">4.5.5505050</span>
                         </a>
@@ -68,73 +68,10 @@
         </div>
     </aside>
     <main>
-        <section id = "main_favourites">
-            <h3 class = "font_18_21">Избранное</h3>
-            <div id = "view_all"><a href = "#" class = "font_14_16">Смотреть все</a></div>
-            <a href = "#" class = "folder">
-                <img src = "{% static 'img/folder.svg' %}" alt = "Папка">
-                <span class = "number">450</span>
-                <span class = "font_11_13">Синергет / CSS / 4.5.5 /</span>
-                <span class = "font_22_26">4.5.5505050</span>
-                <span class = "font_11_13 date">Последнее изменение: 07.09.2021 12:20</span>
-            </a><!--
-            --><a href = "#" class = "folder">
-                <img src = "{% static 'img/folder.svg' %}" alt = "Папка">
-                <span class = "number">450</span>
-                <span class = "font_11_13">Синергет /</span>
-                <span class = "font_22_26">CSS</span>
-                <span class = "font_11_13 date">Последнее изменение: 07.09.2021 12:20</span>
-            </a><!--
-            --><a href = "#" class = "folder project">
-                <img src = "{% static 'img/folder.svg' %}" alt = "Папка">
-                <span class = "number">450</span>
-                <span class = "font_11_13">Синергет / CSS / 4.5.5 /</span>
-                <span class = "font_22_26">4.5.5505050</span>
-                <span class = "font_11_13 date">Последнее изменение: 07.09.2021 12:20</span>
-                <img class = "like" src = "{% static 'img/like.svg' %}" alt = "Понравилось">
-                <span class = "like">15</span>
-                <img class = "dislike" src = "{% static 'img/dislike.svg' %}" alt = "Не понравилось">
-                <span class = "dislike">1</span>
-                <img class = "downloads" src = "{% static 'img/downloads.svg' %}" alt = "Скачиваний">
-                <span class = "downloads">47</span>
-            </a><!--
-            --><a href = "#" class = "folder project">
-                <img src = "{% static 'img/folder.svg' %}" alt = "Папка">
-                <span class = "number">450</span>
-                <span class = "font_11_13">Синергет / CSS / 4.5.5 /</span>
-                <span class = "font_22_26">4.5.5505050</span>
-                <span class = "font_11_13 date">Последнее изменение: 07.09.2021 12:20</span>
-                <img class = "like" src = "{% static 'img/like.svg' %}" alt = "Понравилось">
-                <span class = "like">15</span>
-                <img class = "dislike" src = "{% static 'img/dislike.svg' %}" alt = "Не понравилось">
-                <span class = "dislike">1</span>
-                <img class = "downloads" src = "{% static 'img/downloads.svg' %}" alt = "Скачиваний">
-                <span class = "downloads">47</span>
-            </a><!--
-            --><a href = "#" class = "folder project">
-                <img src = "{% static 'img/folder.svg' %}" alt = "Папка">
-                <span class = "number">450</span>
-                <span class = "font_11_13">Синергет / CSS / 4.5.5 /</span>
-                <span class = "font_22_26">4.5.5505050</span>
-                <span class = "font_11_13 date">Последнее изменение: 07.09.2021 12:20</span>
-                <img class = "like" src = "{% static 'img/like.svg' %}" alt = "Понравилось">
-                <span class = "like">15</span>
-                <img class = "dislike" src = "{% static 'img/dislike.svg' %}" alt = "Не понравилось">
-                <span class = "dislike">1</span>
-                <img class = "downloads" src = "{% static 'img/downloads.svg' %}" alt = "Скачиваний">
-                <span class = "downloads">47</span>
-            </a>
-        </section>
-        <section id = "files">
-            <h3 class = "font_18_21">Файлы</h3>
-            {% for folder, modification_time in folders.items %}<!--
-                --><a href = "#" class = "folder">
-                    <img src = "{% static 'img/folder.svg' %}" alt = "Папка">
-                    <span class = "number">450</span>
-                    <span class = "font_22_26">{{folder}}</span>
-                    <span class = "font_11_13 date">Последнее изменение: {{modification_time}}</span>
-                </a><!--
-            -->{% endfor %}
-        </section>
     </main>
+    <script>
+        var statics_url = "{% get_static_prefix %}";
+        var full_path = "http://{{ request.get_host }}{{ request.get_full_path }}";
+    </script>
+    <script type = "text/javascript" src = "{% static 'js/main.js' %}"></script>
 {% endblock %}

@@ -173,6 +173,7 @@ summary::before {
     border-width: 5px 0 5px 5px;
     border-style: solid;
     border-color: transparent transparent transparent #A2A6B6;
+    margin: 3px 0 0 0;
     transform: rotate(90deg);
     transition: 0.25s transform ease;
 }
@@ -297,4 +298,20 @@ img.downloads {
 span.downloads {
     bottom: 139px;
     left: 107px;
+}
+
+h3#path {
+    margin: 0px 0 33px 0;
+}
+
+#current {
+    color: #3361FF;
+}
+
+.arrow {
+    margin: 0 32px 0 33px;
+}
+
+.usual {
+    color: black;
 }

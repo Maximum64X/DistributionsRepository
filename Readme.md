@@ -13,9 +13,9 @@
 
 Web interface for viewing brief statistics, downloading and editing various versions of a single project
 
-![Screenshot of main page](./main.png "Main page")
+![Short video with describing interface of the main page and it's functional](./main.gif "Main page")
 
-Currently 95.5% frontend of main page is made
+Currently 95.6% frontend of main page is made
 
 ### Instruction
 
@@ -41,9 +41,9 @@ python3 manage.py runserver
 
 Веб-интерфейс для просмотра краткой статистики, загрузки и редактирования различых версий одного проекта
 
-![Скриншот главной страницы](./main.png "Главная страница")
+![Короткое видео описывающее интерфейс главной страницы и её функционал](./main.gif "Главная страница")
 
-На данный момент около 95,5% интерфейса главной страницы готово
+На данный момент около 95,6% интерфейса главной страницы готово
 
 ### Инструкция
 
