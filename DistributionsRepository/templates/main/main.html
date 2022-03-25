@@ -72,6 +72,7 @@
     <script>
         var statics_url = "{% get_static_prefix %}";
         var full_path = "http://{{ request.get_host }}{{ request.get_full_path }}";
+        var internal = "{{ internal }}"
     </script>
     <script type = "text/javascript" src = "{% static 'js/main.js' %}"></script>
 {% endblock %}

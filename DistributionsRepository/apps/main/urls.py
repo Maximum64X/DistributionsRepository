@@ -19,5 +19,6 @@ from . import views
 urlpatterns = [
     path('', views.index),
     re_path(r'.*load main', views.load_main),
+    re_path(r'.* (internal)', views.subcatalog),
     re_path(r'^', views.subcatalog),
 ]

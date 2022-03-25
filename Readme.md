@@ -15,7 +15,7 @@ Web interface for viewing brief statistics, downloading and editing various vers
 
 ![Short video with describing interface of the main page and it's functional](./main.gif "Main page")
 
-Currently 95.6% frontend of main page is made
+Currently 95.6% frontend of main page is made. Now the user can browse through catalogs and use direct links for accessing to catalogs
 
 ### Instruction
 
@@ -43,7 +43,7 @@ python3 manage.py runserver
 
 ![Короткое видео описывающее интерфейс главной страницы и её функционал](./main.gif "Главная страница")
 
-На данный момент около 95,6% интерфейса главной страницы готово
+На данный момент около 95,6% интерфейса главной страницы готово. Теперь пользователь может путешествовать по каталогам и использовать прямые ссылки для получения доступа к каталогам
 
 ### Инструкция
 

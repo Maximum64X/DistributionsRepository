@@ -4,33 +4,21 @@ from django.http import JsonResponse
 
 
 def index(request):
-
-    os.chdir("DistributionsRepository/media")
-    folders = os.listdir()
-
-    modification_time = []
-    for folder in folders:
-        modification_time.append(datetime.datetime.fromtimestamp(os.stat(folder).st_mtime).strftime('%d.%m.%Y %H:%M'))
-
-    os.chdir('../..')
-
-    folders = dict(zip(folders, modification_time))
-
-    return render(request, 'main/main.html', {"folders": folders})
+    return render(request, 'main/main.html')
 
 def subcatalog(request):
-
     path = request.path.lstrip("/main/")
+    if ' (internal)' in path:
+        path = path.rstrip(' (internal)')
+    else:
+        return render(request, 'main/main.html', {'internal': 'false'})
 
-    os.chdir("DistributionsRepository/media/" + path)
-    folders = os.listdir()
+    folders = os.listdir("DistributionsRepository/media/" + path)
 
     modification_time = []
     for folder in folders:
-        modification_time.append(datetime.datetime.fromtimestamp(os.stat(folder).st_mtime).strftime('%d.%m.%Y %H:%M'))
+        modification_time.append(datetime.datetime.fromtimestamp(os.stat("DistributionsRepository/media/" + path + '/' + folder).st_mtime).strftime('%d.%m.%Y %H:%M'))
         folder = path + '/' + folder
-
-    os.chdir('../' * (path.count('/') + 3))
 
     i = 0
     while i < len(folders):
@@ -38,22 +26,18 @@ def subcatalog(request):
         i += 1
 
     folders = dict(zip(folders, modification_time))
-
     response = JsonResponse(folders)
 
     return response
 
 def load_main(request):
-    os.chdir("DistributionsRepository/media")
-    folders = os.listdir()
+    folders = os.listdir("DistributionsRepository/media")
 
     modification_time = []
     for folder in folders:
-        modification_time.append(datetime.datetime.fromtimestamp(os.stat(folder).st_mtime).strftime('%d.%m.%Y %H:%M'))
-
-    os.chdir('../..')
+        modification_time.append(datetime.datetime.fromtimestamp(os.stat("DistributionsRepository/media/" + folder).st_mtime).strftime('%d.%m.%Y %H:%M'))
 
     folders = dict(zip(folders, modification_time))
-
     response = JsonResponse(folders)
+
     return response

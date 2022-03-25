@@ -1,7 +1,12 @@
 'use strict';
 
 // OnFirstLoad
-loadMain();
+if (internal == 'false') {
+    loadFolders.call({href: full_path});
+}
+else {
+    loadMain();
+}
 
 let nav_main = document.querySelector('#nav_main');
 nav_main.addEventListener('click', nav_main_clickHandler);
@@ -10,7 +15,7 @@ function nav_main_clickHandler( event ){
     event.preventDefault();
     
     loadMain();
-
+    
     window.history.pushState({route: ''}, "Going to the main page", full_path);
 }
 
@@ -20,92 +25,7 @@ document.body.querySelectorAll('.usual')
 function link_clickHandler( event ){
     event.preventDefault(); 
 
-    let path = decodeURI(this.href);
-
-    fetch(path).then(
-        response => {
-            return response.json();
-        }
-    ).then(
-        data => {
-            let main = document.querySelector('main');
-            main.innerHTML = "";
-
-            let section = document.createElement('section');
-            section.id = 'files';
-            main.appendChild(section);
-            
-            let h3 = document.createElement('h3');
-            h3.className = 'font_18_21';
-            h3.id = 'path';
-
-            let a = document.createElement('a');
-            a.className = 'usual';
-            a.id = 'current';
-            a.href = full_path + path.split('/')[4];
-            a.innerHTML = path.split('/')[4];
-            h3.appendChild(a);
-
-            for(let i = 5; path.split('/')[i] != undefined; i++)
-            {
-                a.id = '';
-
-                if(h3.innerHTML != '')
-                {
-                    let img = document.createElement('img');
-                    img.className = 'arrow';
-                    img.src = statics_url + "img/arrow.svg";
-                    img.alt = "Стрелочка";
-                    h3.appendChild(img);
-                }
-
-                a = document.createElement('a');
-                a.className = 'usual';
-                a.id = 'current';
-                let relative_path = path.split('/')[4];
-                for(let l = 5; l < i + 1; l++)
-                {
-                    relative_path += '/' + path.split('/')[l];
-                }
-                a.href = full_path + relative_path;
-                a.innerHTML += path.split('/')[i];
-                h3.appendChild(a);
-            }
-            section.appendChild(h3);
-
-            for(var key in data)
-            {
-                let a = document.createElement('a');
-                a.className = "folder usual";
-                a.href = full_path + key;
-                section.appendChild(a);
-
-                let img = document.createElement('img');
-                img.src = statics_url + "img/folder.svg";
-                img.alt = "Каталог";
-                a.appendChild(img);
-
-                let span = document.createElement('span');
-                span.className = "number";
-                span.innerHTML = "450";
-                a.appendChild(span);
-
-                span = document.createElement('span')
-                span.className = "font_22_26";
-                span.innerHTML = key.split('/').pop();
-                a.appendChild(span);
-
-                span = document.createElement('span')
-                span.className = "font_11_13 date";
-                span.innerHTML = "Последнее изменение: " + data[key];
-                a.appendChild(span);
-            }
-            document.body.querySelectorAll('.usual')
-            .forEach( link => link.addEventListener('click', link_clickHandler, true) );
-        }
-    );
-
-    window.history.pushState({route: path}, "Moving to the subcatalog", path);
+    loadFolders.call({href: this.href});
 }
 
 window.addEventListener('popstate', window_popStateHandler);
@@ -430,6 +350,105 @@ function loadMain() {
             }
         }
     )
+}
+
+function loadFolders(){
+    let path = decodeURI(this.href);
+    
+    if (internal == 'false') {
+        full_path = full_path.split('/')[0] + '/' + full_path.split('/')[1] + '/' + full_path.split('/')[2] + '/' + full_path.split('/')[3] + '/'; // We must get "raw" full path for correct work with next iterations. Probably, it must be realised somehow different
+        internal = 'true';
+    }
+
+    fetch(path + " (internal)").then(
+        response => {
+            return response.json();
+        }
+    ).then(
+        data => {
+            let main = document.querySelector('main');
+            main.innerHTML = "";
+
+            let section = document.createElement('section');
+            section.id = 'files';
+            main.appendChild(section);
+            
+            let h3 = document.createElement('h3');
+            h3.className = 'font_18_21';
+            h3.id = 'path';
+
+            let a = document.createElement('a');
+            a.className = 'usual';
+            a.id = 'current';
+            a.href = full_path + path.split('/')[4];
+            a.innerHTML = path.split('/')[4];
+            h3.appendChild(a);
+
+            for(let i = 5; path.split('/')[i] != undefined; i++)
+            {
+                a.id = '';
+
+                if(h3.innerHTML != '')
+                {
+                    let img = document.createElement('img');
+                    img.className = 'arrow';
+                    img.src = statics_url + "img/arrow.svg";
+                    img.alt = "Стрелочка";
+                    h3.appendChild(img);
+                }
+
+                a = document.createElement('a');
+                a.className = 'usual';
+                a.id = 'current';
+                let relative_path = path.split('/')[4];
+                for(let l = 5; l < i + 1; l++)
+                {
+                    relative_path += '/' + path.split('/')[l];
+                }
+                a.href = full_path + relative_path;
+                a.innerHTML += path.split('/')[i];
+                h3.appendChild(a);
+            }
+            section.appendChild(h3);
+
+            for(var key in data)
+            {
+                let a = document.createElement('a');
+                a.className = "folder usual";
+                a.href = full_path + key;
+                section.appendChild(a);
+
+                let img = document.createElement('img');
+                img.src = statics_url + "img/folder.svg";
+                img.alt = "Каталог";
+                a.appendChild(img);
+
+                let span = document.createElement('span');
+                span.className = "number";
+                span.innerHTML = "450";
+                a.appendChild(span);
+
+                span = document.createElement('span')
+                span.className = "font_22_26";
+                let folder_name = key.split('/').pop();
+                span.title = folder_name;
+                if (folder_name.length > 16){
+                    folder_name = folder_name.substring(0, 17) + "...";
+                }
+                span.innerHTML = folder_name
+                a.appendChild(span);
+
+                span = document.createElement('span')
+                span.className = "font_11_13 date";
+                span.innerHTML = "Последнее изменение: " + data[key];
+                a.appendChild(span);
+            }
+            document.body.querySelectorAll('.usual')
+            .forEach( link => link.addEventListener('click', link_clickHandler, true) );
+        }
+    );
+
+    window.history.pushState({route: path}, "Moving to the subcatalog", path);
 }
 
 function window_popStateHandler( event ){
