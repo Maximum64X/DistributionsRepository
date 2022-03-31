@@ -18,7 +18,6 @@ def subcatalog(request):
     modification_time = []
     for folder in folders:
         modification_time.append(datetime.datetime.fromtimestamp(os.stat("DistributionsRepository/media/" + path + '/' + folder).st_mtime).strftime('%d.%m.%Y %H:%M'))
-        folder = path + '/' + folder
 
     i = 0
     while i < len(folders):

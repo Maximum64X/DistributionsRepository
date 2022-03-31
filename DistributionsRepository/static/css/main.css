@@ -72,6 +72,9 @@ main {
     line-height: 16px;
     color: #161616;
 }
+.gray {
+    color: #A2A6B6;
+}
 .font_11_13 {
     font: 11px Roboto;
     line-height: 13px;
@@ -314,4 +317,64 @@ h3#path {
 
 .usual {
     color: black;
+}
+
+table {
+    text-align: left;
+}
+
+table > tr > th:nth-child(1) {
+    width: 65px;
+}
+
+table > tr > th:nth-child(2) {
+    width: 644px;
+}
+
+table > tr > th:nth-child(3) {
+    width: 176px;
+}
+
+table > tr > th:nth-child(4) {
+    width: 137px;
+}
+
+table > tr > th:nth-child(5) {
+    width: 115px;
+}
+
+tr > th {
+    border-bottom: 1px solid #F1F1F1;
+    padding: 0 0 9px 0;
+}
+
+.file_img {
+    width: 33px;
+    margin: 9px 0;
+}
+
+.file_rating {
+    margin: 0 5px 0 0;
+}
+
+.file_number {
+    font-family: Rubik;
+    font-size: 16px;
+    line-height: 19px;
+    margin: 0 10px 0 0;
+}
+
+.extension {
+    display: grid;
+    align-items: center;
+    justify-items: center;
+    padding-right: 31px;
+}
+
+.extension > span {
+    position: absolute;
+    margin: 10px 0 0 1px;
+    color: white;
+    font-size: 12px;
+    font-weight: bold;
 }

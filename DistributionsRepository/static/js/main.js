@@ -2,7 +2,7 @@
 
 // OnFirstLoad
 if (internal == 'false') {
-    loadFolders.call({href: full_path});
+    getData.call({href: full_path});
 }
 else {
     loadMain();
@@ -25,7 +25,7 @@ document.body.querySelectorAll('.usual')
 function link_clickHandler( event ){
     event.preventDefault(); 
 
-    loadFolders.call({href: this.href});
+    getData.call({href: this.href});
 }
 
 window.addEventListener('popstate', window_popStateHandler);
@@ -318,7 +318,7 @@ function loadMain() {
             h3.innerHTML = 'Файлы';
             section.appendChild(h3);
 
-            for(var key in data)
+            for(let key in data)
             {
                 let a = document.createElement('a');
                 a.className = "folder usual";
@@ -352,7 +352,7 @@ function loadMain() {
     )
 }
 
-function loadFolders(){
+function getData(){
     let path = decodeURI(this.href);
     
     if (internal == 'false') {
@@ -411,38 +411,141 @@ function loadFolders(){
             }
             section.appendChild(h3);
 
-            for(var key in data)
-            {
-                let a = document.createElement('a');
-                a.className = "folder usual";
-                a.href = full_path + key;
-                section.appendChild(a);
-
-                let img = document.createElement('img');
-                img.src = statics_url + "img/folder.svg";
-                img.alt = "Каталог";
-                a.appendChild(img);
-
-                let span = document.createElement('span');
-                span.className = "number";
-                span.innerHTML = "450";
-                a.appendChild(span);
-
-                span = document.createElement('span')
-                span.className = "font_22_26";
-                let folder_name = key.split('/').pop();
-                span.title = folder_name;
-                if (folder_name.length > 16){
-                    folder_name = folder_name.substring(0, 17) + "...";
+            if (path.split('/').length != 8) {
+                // If catalog is a container for catalogs
+                for(var key in data)
+                {
+                    let a = document.createElement('a');
+                    a.className = "folder usual";
+                    a.href = full_path + key;
+                    section.appendChild(a);
+    
+                    let img = document.createElement('img');
+                    img.src = statics_url + "img/folder.svg";
+                    img.alt = "Каталог";
+                    a.appendChild(img);
+    
+                    let span = document.createElement('span');
+                    span.className = "number";
+                    span.innerHTML = "450";
+                    a.appendChild(span);
+    
+                    span = document.createElement('span')
+                    span.className = "font_22_26";
+                    let folder_name = key.split('/').pop();
+                    span.title = folder_name;
+                    if (folder_name.length > 16){
+                        folder_name = folder_name.substring(0, 17) + "...";
+                    }
+                    span.innerHTML = folder_name
+                    a.appendChild(span);
+    
+                    span = document.createElement('span')
+                    span.className = "font_11_13 date";
+                    span.innerHTML = "Последнее изменение: " + data[key];
+                    a.appendChild(span);
                 }
-                span.innerHTML = folder_name
-                a.appendChild(span);
-
-                span = document.createElement('span')
-                span.className = "font_11_13 date";
-                span.innerHTML = "Последнее изменение: " + data[key];
-                a.appendChild(span);
             }
+            else {
+                // If catalog is a container for files
+                let table = document.createElement('table');
+                table.className = 'font_14_16';
+                table.cellPadding = '0px';
+                table.cellSpacing = '0px';
+                section.appendChild(table);
+
+                let tr = document.createElement('tr');
+                table.appendChild(tr);
+
+                let th = document.createElement('th');
+                th.className = "font_14_16 gray";
+                th.innerHTML = 'Тип';
+                tr.appendChild(th);
+
+                th = document.createElement('th');
+                th.className = "font_14_16 gray";
+                th.innerHTML = 'Название';
+                tr.appendChild(th);
+
+                th = document.createElement('th');
+                th.className = "font_14_16 gray";
+                th.innerHTML = 'Последнее изменение';
+                tr.appendChild(th);
+
+                th = document.createElement('th');
+                th.className = "font_14_16 gray";
+                th.innerHTML = 'Скачивания';
+                tr.appendChild(th);
+
+                th = document.createElement('th');
+                th.className = "font_14_16 gray";
+                th.innerHTML = 'Версия';
+                tr.appendChild(th);
+
+                th = document.createElement('th');
+                th.className = "font_14_16 gray";
+                th.innerHTML = 'Рейтинг';
+                tr.appendChild(th);
+
+                for(let key in data) {
+                    tr = document.createElement('tr');
+                    table.appendChild(tr);
+
+                    let td = document.createElement('td');
+                    td.className = 'extension';
+                    tr.appendChild(td);
+
+                    let img = document.createElement('img');
+                    img.className = 'file_img';
+                    img.src = statics_url + 'img/file.svg';
+                    td.appendChild(img);
+
+                    let span = document.createElement('span');
+                    let file_name = key.split('/').pop();
+                    span.innerHTML = file_name.substr(file_name.length - 3);
+                    td.appendChild(span);
+
+                    td = document.createElement('td');
+                    td.innerHTML = file_name;
+                    tr.appendChild(td);
+
+                    td = document.createElement('td');
+                    td.innerHTML = data[key];
+                    tr.appendChild(td);
+
+                    td = document.createElement('td');
+                    td.innerHTML = '25';
+                    tr.appendChild(td);
+
+                    td = document.createElement('td');
+                    td.innerHTML = 'Мажорная';
+                    tr.appendChild(td);
+
+                    td = document.createElement('td');
+                    tr.appendChild(td);
+
+                    img = document.createElement('img');
+                    img.className = 'file_rating';
+                    img.src = statics_url + 'img/like.svg';
+                    td.appendChild(img);
+
+                    span = document.createElement('span');
+                    span.className = 'file_number';
+                    span.innerHTML = '15';
+                    td.appendChild(span);
+
+                    img = document.createElement('img');
+                    img.className = 'file_rating';
+                    img.src = statics_url + 'img/dislike.svg';
+                    td.appendChild(img);
+
+                    span = document.createElement('span');
+                    span.className = 'file_number';
+                    span.innerHTML = '1';
+                    td.appendChild(span);
+                }
+            }
+
             document.body.querySelectorAll('.usual')
             .forEach( link => link.addEventListener('click', link_clickHandler, true) );
         }
