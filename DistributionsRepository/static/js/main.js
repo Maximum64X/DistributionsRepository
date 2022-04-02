@@ -39,6 +39,7 @@ function loadMain() {
     ).then(
         data => {
             let main = document.querySelector('main');
+            main.id = null;
             main.innerHTML = '';
 
             let section = document.createElement('section');
@@ -367,6 +368,7 @@ function getData(){
     ).then(
         data => {
             let main = document.querySelector('main');
+            main.id = 'extended';
             main.innerHTML = "";
 
             let section = document.createElement('section');
@@ -413,11 +415,11 @@ function getData(){
 
             if (path.split('/').length != 8) {
                 // If catalog is a container for catalogs
-                for(var key in data)
+                for(let key in data['children'])
                 {
                     let a = document.createElement('a');
                     a.className = "folder usual";
-                    a.href = full_path + key;
+                    a.href = full_path + data['current']['path'] + '/' + key;
                     section.appendChild(a);
     
                     let img = document.createElement('img');
@@ -442,7 +444,7 @@ function getData(){
     
                     span = document.createElement('span')
                     span.className = "font_11_13 date";
-                    span.innerHTML = "Последнее изменение: " + data[key];
+                    span.innerHTML = "Последнее изменение: " + data['children'][key]['modification_time'];
                     a.appendChild(span);
                 }
             }
@@ -487,7 +489,7 @@ function getData(){
                 th.innerHTML = 'Рейтинг';
                 tr.appendChild(th);
 
-                for(let key in data) {
+                for(let key in data['children']) {
                     tr = document.createElement('tr');
                     table.appendChild(tr);
 
@@ -510,7 +512,8 @@ function getData(){
                     tr.appendChild(td);
 
                     td = document.createElement('td');
-                    td.innerHTML = data[key];
+                    let modification_time = data['children'][key]['modification_time'];
+                    td.innerHTML = modification_time.split(' ')[0] + '&ensp;&#160;' + modification_time.split(' ')[1];
                     tr.appendChild(td);
 
                     td = document.createElement('td');
@@ -525,7 +528,7 @@ function getData(){
                     tr.appendChild(td);
 
                     img = document.createElement('img');
-                    img.className = 'file_rating';
+                    img.className = 'rating';
                     img.src = statics_url + 'img/like.svg';
                     td.appendChild(img);
 
@@ -535,7 +538,7 @@ function getData(){
                     td.appendChild(span);
 
                     img = document.createElement('img');
-                    img.className = 'file_rating';
+                    img.className = 'rating';
                     img.src = statics_url + 'img/dislike.svg';
                     td.appendChild(img);
 
@@ -546,6 +549,165 @@ function getData(){
                 }
             }
 
+            section = document.createElement('section');
+            section.id = 'additional';
+            main.appendChild(section);
+
+            let div = document.createElement('div');
+            div.id = 'additional1';
+            section.appendChild(div);
+
+            let img = document.createElement('img');
+            img.id = 'folder_blue';
+            img.src = statics_url + 'img/folder_blue.svg';
+            div.appendChild(img);
+
+            img = document.createElement('img');
+            img.id = 'favourite';
+            img.src = statics_url + 'img/favourite_off.svg';
+            div.appendChild(img);
+
+            let span = document.createElement('span');
+            span.className = 'font_22_26';
+            let name = path.split('/')
+            span.innerHTML = name[name.length - 1];
+            div.appendChild(span);
+
+            if(path.split('/').length > 5 & path.split('/').length < 8) {
+                span = document.createElement('span');
+                span.className = 'font_16_19';
+                span.innerHTML = 'Последняя версия';
+                div.appendChild(span);
+
+                let a = document.createElement('a');
+                a.href = '#';
+                div.appendChild(a);
+
+                span = document.createElement('span');
+                span.className = 'font_16_19';
+                span.innerHTML = '4.5.5.25291';
+                a.appendChild(span);
+
+                img = document.createElement('img');
+                img.src = statics_url + 'img/link.svg';
+                a.appendChild(img);
+
+                span = document.createElement('span');
+                span.className = 'font_11_13';
+                span.innerHTML = '12.08.2021';
+                div.appendChild(span);
+            }
+
+            div = document.createElement('div');
+            div.id = 'additional2';
+            section.appendChild(div);
+
+            img = document.createElement('img');
+            img.src = statics_url + 'img/info.svg';
+            div.appendChild(img);
+
+            span = document.createElement('span');
+            span.className = 'font_11_13 gray';
+            span.innerHTML = 'Сведения';
+            div.appendChild(span); 
+
+            span = document.createElement('span');
+            span.className = 'font_16_19 gray';
+            span.innerHTML = 'Дата изменения';
+            div.appendChild(span);
+
+            span = document.createElement('span');
+            span.className = 'font_16_19';
+            let modification_time = data['current']['modification_time'];
+            span.innerHTML = modification_time.split(' ')[0] + '&ensp;&#160;' + modification_time.split(' ')[1];
+            div.appendChild(span);
+
+            span = document.createElement('span');
+            span.className = 'font_16_19 gray';
+            span.innerHTML = 'Размер';
+            div.appendChild(span);
+
+            span = document.createElement('span');
+            span.className = 'font_16_19';
+            let size = data['current']['size'];
+            let tier = 2;
+            let end = false;
+            while(end == false){
+                if(size < 1024){
+                    end = true;
+                    if(size % 1 > 0) {
+                        size = size.toFixed() + ',' + (size % 1).toString().split('.')[1][0];
+                    }
+                }
+                else {
+                    tier += 1;
+                    size /= 1024;
+                }
+            }
+            let tier_str;
+            switch (tier) {
+                case 2:
+                    tier_str = 'Байт';
+                    break;
+                case 3:
+                    tier_str = 'КБ';
+                    break;
+                case 4:
+                    tier_str = 'МБ';
+                    break;
+                case 5:
+                    tier_str = 'ГБ';
+                    break;
+                case 6:
+                    tier_str = 'ТБ';
+                default: // Must raise exception later
+                    tier_str = 'Не распознано!';
+                    break;
+            }
+            span.innerHTML = size + ' ' + tier_str;
+            div.appendChild(span);
+
+            if(path.split('/').length == 8) {
+                span = document.createElement('span');
+                span.className = 'font_16_19 gray';
+                span.innerHTML = 'Кол-во скачиваний';
+                div.appendChild(span);
+    
+                span = document.createElement('span');
+                span.className = 'font_16_19';
+                span.innerHTML = '23';
+                div.appendChild(span);
+    
+                span = document.createElement('span');
+                span.className = 'font_16_19 gray';
+                span.innerHTML = 'Рейтинг';
+                div.appendChild(span);
+    
+                let div_child = document.createElement('div');
+                div_child.id = 'rating';
+                div.appendChild(div_child);
+    
+                img = document.createElement('img');
+                img.className = 'rating';
+                img.src = statics_url + 'img/like.svg';
+                div_child.appendChild(img);
+    
+                span = document.createElement('span');
+                span.className = 'font_16_19';
+                span.innerHTML += '70';
+                div_child.appendChild(span);
+    
+                img = document.createElement('img');
+                img.className = 'rating';
+                img.src = statics_url + 'img/dislike.svg';
+                div_child.appendChild(img);
+    
+                span = document.createElement('span');
+                span.className = 'font_16_19';
+                span.innerHTML += '3';
+                div_child.appendChild(span);
+            }
+            
             document.body.querySelectorAll('.usual')
             .forEach( link => link.addEventListener('click', link_clickHandler, true) );
         }

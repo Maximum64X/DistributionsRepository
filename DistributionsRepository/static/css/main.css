@@ -49,8 +49,87 @@ main {
     border: 1px solid #F1F1F1;
     box-shadow: 0px 0px 14px rgba(188, 194, 217, 0.1);
     border-radius: 10px 10px 0px 0px;
-    padding: 29px;
+    padding: 31px 29px 0 29px;
     max-width: 1280px;
+}
+#extended {
+    display: grid;
+    max-width: none;
+    grid-template-areas: "files additional";
+    grid-template-columns: 4.04fr 1fr;
+    padding: 0 0 0 29px;
+}
+#extended > #files {
+    grid-area: files;
+    padding: 31px 0 0 0;
+}
+#additional {
+    display: flex;
+    flex-direction: column;
+    grid-area: additional;
+    border-left: 1px solid #F1F1F1;
+    margin: 29px 0 0 0;
+}
+#additional1 {
+    flex-basis: 27.2%;
+    border-bottom: 1px solid #F1F1F1;
+    padding: 0 0 0 23px;
+}
+#additional2 {
+    padding: 16px 0 0 23px;
+}
+#additional2 > .font_11_13 {
+    position: relative;
+    bottom: 7px;
+    left: 5px;
+}
+#folder_blue {
+    margin: 6px 0 0 0;
+}
+#favourite {
+    float: right;
+    position: relative;
+    bottom: 15px;
+    right: 15px;
+}
+#additional1 > .font_22_26 {
+    display: block;
+    margin: 21px 0 0 0;
+    color: #3361FF;
+}
+#additional1 > span:nth-child(4) {
+    display: block;
+    margin: 53px 0 0 0;
+}
+#additional1 > a {
+    display: block;
+    margin: 3px 0 0 0;
+}
+#additional1 > a > span {
+    color: #3361FF;
+}
+#additional1 > a > img {
+    position: relative;
+    top: 3px;
+    left: 1px;
+}
+#additional2 > span:nth-child(3) {
+    display: block;
+    margin: 20px 0 0 0;
+}
+#additional2 > span:nth-child(2n + 4) {
+    display: block;
+    margin: 8px 0 0 0;
+}
+#additional2 > span:nth-child(2n + 5) {
+    display: block;
+    margin: 24px 0 0 0;
+}
+#rating {
+    margin: 11px 0 0 0;
+}
+#rating > span {
+    margin: 0 18px 0 0;
 }
 * {
     margin: 0;
@@ -65,6 +144,11 @@ main {
 .font_18_21 {
     font: 18px Roboto;
     line-height: 21px;
+    color: #161616;
+}
+.font_16_19 {
+    font: 16px Roboto;
+    line-height: 19px;
     color: #161616;
 }
 .font_14_16 {
@@ -208,7 +292,7 @@ summary::before {
 #profile_exit {
     padding: 5px 0 0 35px;
 }
-section {
+#main_favourites {
     margin: 0 0 30px 0;
 }
 #view_all {
@@ -340,7 +424,10 @@ table > tr > th:nth-child(4) {
 }
 
 table > tr > th:nth-child(5) {
-    width: 115px;
+    width: 116px;
+}
+table > tr > th:nth-child(6) {
+    min-width: 60px;
 }
 
 tr > th {
@@ -353,7 +440,7 @@ tr > th {
     margin: 9px 0;
 }
 
-.file_rating {
+.rating {
     margin: 0 5px 0 0;
 }
 
