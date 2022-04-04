@@ -56,12 +56,49 @@ main {
     display: grid;
     max-width: none;
     grid-template-areas: "files additional";
-    grid-template-columns: 4.04fr 1fr;
-    padding: 0 0 0 29px;
+    grid-template-columns: 4.08fr 1fr;
+    padding: 0 0 0 16px;
 }
 #extended > #files {
     grid-area: files;
     padding: 31px 0 0 0;
+}
+#extended > #files > h3 {
+    padding: 0 0 0 13px;
+}
+#extended > #files > .folder:nth-child(2) {
+    margin: 0 30px 30px 13px;
+}
+tr > th:nth-child(1) {
+    display: block;
+    margin: 0 0 0 13px;
+}
+tr > th:nth-child(6) {
+    display: block;
+    margin: 0 12px 0 0;
+}
+tr > th {
+    padding: 0 0 8px 0;
+}
+tr:nth-child(2) > td {
+    border-top: solid 1px #F1F1F1;
+}
+#selected > td { 
+    border-top: solid 1px #F1F1F1;
+    border-bottom: solid 1px #F1F1F1;
+}
+#selected > td:nth-child(1) { border-left: solid 1px #F1F1F1; }
+#selected > td:nth-child(6) { border-right: solid 1px #F1F1F1; }
+#selected > td:first-child { border-top-left-radius: 10px; }
+#selected > td:last-child { border-top-right-radius: 10px; }
+#selected > td:first-child { border-bottom-left-radius: 10px; }
+#selected > td:last-child { border-bottom-right-radius: 10px; }
+#selected > td {
+    background-color: #3361FF;
+    color: #FFFFFF;
+}
+#selected > .extension > span {
+    color: #3361FF;
 }
 #additional {
     display: flex;
@@ -427,20 +464,10 @@ table > tr > th:nth-child(5) {
     width: 116px;
 }
 table > tr > th:nth-child(6) {
-    min-width: 60px;
+    width: 84px;
 }
 
-tr > th {
-    border-bottom: 1px solid #F1F1F1;
-    padding: 0 0 9px 0;
-}
-
-.file_img {
-    width: 33px;
-    margin: 9px 0;
-}
-
-.rating {
+.rating_like, .rating_dislike {
     margin: 0 5px 0 0;
 }
 
@@ -453,15 +480,25 @@ tr > th {
 
 .extension {
     display: grid;
+    min-height: 64px;
     align-items: center;
     justify-items: center;
-    padding-right: 31px;
+    padding-right: 20px;
 }
 
 .extension > span {
     position: absolute;
-    margin: 10px 0 0 1px;
+    margin: 10px 0 0 0;
     color: white;
     font-size: 12px;
     font-weight: bold;
+}
+
+.file {
+    margin: 0 0 1px 1px;
+    width: 33px;
+}
+
+#selected > .extension {
+    padding-right: 21px;
 }

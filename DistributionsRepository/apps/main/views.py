@@ -9,8 +9,8 @@ def index(request):
 
 def subcatalog(request):
     path = request.path.lstrip("/main/")
-    if ' (internal)' in path:
-        path = path[:-11:1]
+    if ' /internal' in path:
+        path = path[:-10:1]
     else:
         return render(request, 'main/main.html', {'internal': 'false'})
 
@@ -26,7 +26,7 @@ def subcatalog(request):
     data['children'] = {}
     for folder in folders:
         data['children'][folder] = {
-            'modification_time': (datetime.datetime.fromtimestamp(os.stat("DistributionsRepository/media/" + path + '/' + folder).st_mtime).strftime('%d.%m.%Y %H:%M'))
+            'modification_time': datetime.datetime.fromtimestamp(os.stat("DistributionsRepository/media/" + path + '/' + folder).st_mtime).strftime('%d.%m.%Y %H:%M')
         }
 
     response = JsonResponse(data)
