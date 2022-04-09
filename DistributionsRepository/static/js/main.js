@@ -361,6 +361,16 @@ function getData(){
         internal = 'true';
     }
 
+    let selected;
+    if(path.split('/').length == 9) {
+        let new_path = '';
+        for(let i = 0; i < 8; i++) {
+            new_path += path.split('/')[i] + '/';
+        }
+        selected = path.split('/')[8];
+        path = new_path.substring(0, new_path.length - 1);
+    }
+
     fetch(path + " /internal").then(
         response => {
             return response.json();
@@ -450,121 +460,156 @@ function getData(){
             }
             else {
                 // If catalog is a container for files
-                let table = document.createElement('table');
-                table.className = 'font_14_16';
-                table.cellPadding = '0px';
-                table.cellSpacing = '0px';
-                section.appendChild(table);
+                let div = document.createElement('div');
+                div.id = 'table';
+                div.className = 'font_14_16';
+                section.appendChild(div);
 
-                let tr = document.createElement('tr');
-                table.appendChild(tr);
+                let span = document.createElement('div');
+                div.appendChild(span);
 
-                let th = document.createElement('th');
-                th.className = "font_14_16 gray";
-                th.innerHTML = 'Тип';
-                tr.appendChild(th);
+                let span_child = document.createElement('span');
+                span_child.className = "font_14_16 gray";
+                span_child.innerHTML = 'Тип';
+                span.appendChild(span_child);
 
-                th = document.createElement('th');
-                th.className = "font_14_16 gray";
-                th.innerHTML = 'Название';
-                tr.appendChild(th);
+                span_child = document.createElement('span');
+                span_child.className = "font_14_16 gray";
+                span_child.innerHTML = 'Название';
+                span.appendChild(span_child);
 
-                th = document.createElement('th');
-                th.className = "font_14_16 gray";
-                th.innerHTML = 'Последнее изменение';
-                tr.appendChild(th);
+                span_child = document.createElement('span');
+                span_child.className = "font_14_16 gray";
+                span_child.innerHTML = 'Последнее изменение';
+                span.appendChild(span_child);
 
-                th = document.createElement('th');
-                th.className = "font_14_16 gray";
-                th.innerHTML = 'Скачивания';
-                tr.appendChild(th);
+                span_child = document.createElement('span');
+                span_child.className = "font_14_16 gray";
+                span_child.innerHTML = 'Скачивания';
+                span.appendChild(span_child);
 
-                th = document.createElement('th');
-                th.className = "font_14_16 gray";
-                th.innerHTML = 'Версия';
-                tr.appendChild(th);
+                span_child = document.createElement('span');
+                span_child.className = "font_14_16 gray";
+                span_child.innerHTML = 'Версия';
+                span.appendChild(span_child);
 
-                th = document.createElement('th');
-                th.className = "font_14_16 gray";
-                th.innerHTML = 'Рейтинг';
-                tr.appendChild(th);
+                span_child = document.createElement('span');
+                span_child.className = "font_14_16 gray";
+                span_child.innerHTML = 'Рейтинг';
+                span.appendChild(span_child);
 
                 for(let key in data['children']) {
-                    tr = document.createElement('tr');
-                    tr.addEventListener('click', fileSelect, true);
-                    tr.style.cursor = 'pointer';
-                    table.appendChild(tr);
+                    let a = document.createElement('a');
+                    let file_name = key.split('/').pop();
+                    a.href = full_path + data['current']['path'] + '/' + file_name;
+                    a.addEventListener('click', fileSelect, true);
+                    div.appendChild(a);
 
-                    let td = document.createElement('td');
-                    td.className = 'extension';
-                    tr.appendChild(td);
+                    let span = document.createElement('div');
+                    span.className = 'extension';
+                    a.appendChild(span);
 
                     let img = document.createElement('img');
                     img.className = 'file';
                     img.src = statics_url + 'img/file.svg';
-                    td.appendChild(img);
+                    span.appendChild(img);
 
-                    let span = document.createElement('span');
-                    let file_name = key.split('/').pop();
-                    span.innerHTML = file_name.substr(file_name.length - 3);
-                    td.appendChild(span);
+                    let span_child = document.createElement('span');
+                    span_child.innerHTML = file_name.substr(file_name.length - 3);
+                    span.appendChild(span_child);
 
-                    td = document.createElement('td');
-                    td.innerHTML = file_name;
-                    tr.appendChild(td);
+                    span = document.createElement('span');
+                    span.innerHTML = file_name;
+                    a.appendChild(span);
 
-                    td = document.createElement('td');
+                    span = document.createElement('span');
                     let modification_time = data['children'][key]['modification_time'];
-                    td.innerHTML = modification_time.split(' ')[0] + '&ensp;&#160;' + modification_time.split(' ')[1];
-                    tr.appendChild(td);
+                    span.innerHTML = modification_time.split(' ')[0] + '&ensp;&#160;' + modification_time.split(' ')[1];
+                    a.appendChild(span);
 
-                    td = document.createElement('td');
-                    td.innerHTML = '25';
-                    tr.appendChild(td);
+                    span = document.createElement('span');
+                    span.innerHTML = '25';
+                    a.appendChild(span);
 
-                    td = document.createElement('td');
-                    td.innerHTML = 'Мажорная';
-                    tr.appendChild(td);
+                    span = document.createElement('span');
+                    span.innerHTML = 'Мажорная';
+                    a.appendChild(span);
 
-                    td = document.createElement('td');
-                    tr.appendChild(td);
+                    span = document.createElement('span');
+                    a.appendChild(span);
 
                     img = document.createElement('img');
                     img.className = 'rating_like';
                     img.src = statics_url + 'img/like.svg';
-                    td.appendChild(img);
+                    span.appendChild(img);
 
-                    span = document.createElement('span');
-                    span.className = 'file_number';
-                    span.innerHTML = '15';
-                    td.appendChild(span);
+                    span_child = document.createElement('span');
+                    span_child.className = 'file_number';
+                    span_child.innerHTML = '15';
+                    span.appendChild(span_child);
 
                     img = document.createElement('img');
                     img.className = 'rating_dislike';
                     img.src = statics_url + 'img/dislike.svg';
-                    td.appendChild(img);
+                    span.appendChild(img);
 
-                    span = document.createElement('span');
-                    span.className = 'file_number';
-                    span.innerHTML = '1';
-                    td.appendChild(span);
+                    span_child = document.createElement('span');
+                    span_child.className = 'file_number';
+                    span_child.innerHTML = '1';
+                    span.appendChild(span_child);
                 }
             }
 
-            section.addEventListener('click', selectClear, true);
-
-            createSidePanel(main, path, data);
+            if(selected == null) {
+                window.history.pushState({route: path}, "Moving to the subcatalog", path);
+                createSidePanel(path, data);
+            }
+            else {
+                document.querySelector('a[href="' + path + '/' + selected + '"').click();
+                window.history.pushState({route: path}, "Selected file", path);
+            }
             
             document.body.querySelectorAll('.usual')
             .forEach( link => link.addEventListener('click', link_clickHandler, true) );
         }
     );
-
-    window.history.pushState({route: path}, "Moving to the subcatalog", path);
 }
 
-function fileSelect() {
-    selectClear()
+function fileSelect(event) {
+    event.preventDefault();
+    
+    let old_selected = document.querySelector('#selected');
+    if(old_selected != null) {
+        if(this.href != old_selected.href) {
+            old_selected.id = null;
+
+            let img = old_selected.querySelector('.file');
+            img.src = statics_url + 'img/file.svg';
+        
+            img = old_selected.querySelector('.rating_like');
+            img.src = statics_url + 'img/like.svg';
+        
+            img = old_selected.querySelector('.rating_dislike');
+            img.src = statics_url + 'img/dislike.svg';
+        }
+    }
+
+    let path = decodeURI(this.href);
+
+    fetch(path + " /file /internal").then(
+        response => {
+            return response.json();
+        }
+    ).then(
+        data => {
+            let section = document.querySelector('#additional');
+            if(section != null) {
+                document.querySelector('#additional').remove();
+            }
+            createSidePanel(path, data);
+            window.history.pushState({route: path}, "Selected file", path);
+        }
+    );
 
     this.id = 'selected';
 
@@ -576,31 +621,40 @@ function fileSelect() {
 
     img = this.querySelector('.rating_dislike');
     img.src = statics_url + 'img/dislike_selected.svg';
-
-    img = document.querySelector('#favourite');
-    img.remove();
 }
 
-function selectClear() {
+function fileDeselect(event) {
     let old_selected = document.querySelector('#selected');
-    
-    if(old_selected != null){
+    if(event.target == event.currentTarget & old_selected != null) {
         old_selected.id = null;
-
+        
         let img = old_selected.querySelector('.file');
         img.src = statics_url + 'img/file.svg';
-
+    
         img = old_selected.querySelector('.rating_like');
         img.src = statics_url + 'img/like.svg';
-
+    
         img = old_selected.querySelector('.rating_dislike');
         img.src = statics_url + 'img/dislike.svg';
 
-        createSidePanel(main, path, data);
+        let path = document.querySelector('#current').href;
+        fetch(path + " /internal").then(
+            response => {
+                return response.json();
+            }
+        ).then(
+            data => {
+                document.querySelector('#additional').remove();
+                createSidePanel(path, data);
+                window.history.pushState({route: path}, "Deselected file", path);
+            }
+        );
     }
 }
 
-function createSidePanel(main, path, data) {
+function createSidePanel(path, data) {
+    let main = document.querySelector('main');
+
     let section = document.createElement('section');
     section.id = 'additional';
     main.appendChild(section);
@@ -612,12 +666,15 @@ function createSidePanel(main, path, data) {
     let img = document.createElement('img');
     img.id = 'folder_blue';
     img.src = statics_url + 'img/folder_blue.svg';
-    div.appendChild(img);
+    div.appendChild(img)
 
-    img = document.createElement('img');
-    img.id = 'favourite';
-    img.src = statics_url + 'img/favourite_off.svg';
-    div.appendChild(img);
+    let path_length = path.split('/').length;
+    if(path_length < 9) {
+        img = document.createElement('img');
+        img.id = 'favourite';
+        img.src = statics_url + 'img/favourite_off.svg';
+        div.appendChild(img);
+    }
 
     let span = document.createElement('span');
     span.className = 'font_22_26';
@@ -625,7 +682,7 @@ function createSidePanel(main, path, data) {
     span.innerHTML = name[name.length - 1];
     div.appendChild(span);
 
-    if(path.split('/').length > 5 & path.split('/').length < 8) {
+    if(path_length > 5 & path_length < 8) {
         span = document.createElement('span');
         span.className = 'font_16_19';
         span.innerHTML = 'Последняя версия';
@@ -670,7 +727,13 @@ function createSidePanel(main, path, data) {
 
     span = document.createElement('span');
     span.className = 'font_16_19';
-    let modification_time = data['current']['modification_time'];
+    let modification_time;
+    if(path_length < 9) {
+        modification_time = data['current']['modification_time'];
+    }
+    else {
+        modification_time = data['modification_time'];
+    }
     span.innerHTML = modification_time.split(' ')[0] + '&ensp;&#160;' + modification_time.split(' ')[1];
     div.appendChild(span);
 
@@ -681,7 +744,13 @@ function createSidePanel(main, path, data) {
 
     span = document.createElement('span');
     span.className = 'font_16_19';
-    let size = data['current']['size'];
+    let size;
+    if(path_length < 9) {
+        size = data['current']['size'];
+    }
+    else {
+        size = data['size'];
+    }
     let tier = 2;
     let end = false;
     while(end == false){
@@ -719,7 +788,7 @@ function createSidePanel(main, path, data) {
     span.innerHTML = size + ' ' + tier_str;
     div.appendChild(span);
 
-    if(path.split('/').length == 8) {
+    if(path_length > 7) {
         span = document.createElement('span');
         span.className = 'font_16_19 gray';
         span.innerHTML = 'Кол-во скачиваний';
@@ -729,6 +798,18 @@ function createSidePanel(main, path, data) {
         span.className = 'font_16_19';
         span.innerHTML = '23';
         div.appendChild(span);
+
+        if(path_length == 9) {
+            span = document.createElement('span');
+            span.className = 'font_16_19 gray';
+            span.innerHTML = 'Версия';
+            div.appendChild(span);
+    
+            span = document.createElement('span');
+            span.className = 'font_16_19';
+            span.innerHTML = 'Мажорная';
+            div.appendChild(span);
+        }
 
         span = document.createElement('span');
         span.className = 'font_16_19 gray';
@@ -759,8 +840,26 @@ function createSidePanel(main, path, data) {
         span.innerHTML += '3';
         div_child.appendChild(span);
 
+        if(path_length == 9) {
+            let a = document.createElement('a');
+            a.id = 'download';
+            a.href = path + '/download';
+            div.appendChild(a);
+
+            let img = document.createElement('img');
+            img.src = statics_url + 'img/download.svg';
+            a.appendChild(img);
+
+            let span = document.createElement('span');
+            span.className = 'font_18_21 blue';
+            span.innerHTML = 'Скачать';
+            a.appendChild(span);
+        }
+
         section = main.querySelector('#files');
         section.className = 'table';
+
+        section.addEventListener('click', fileDeselect, true);
     }
 }
 

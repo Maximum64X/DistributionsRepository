@@ -69,37 +69,6 @@ main {
 #extended > #files > .folder:nth-child(2) {
     margin: 0 30px 30px 13px;
 }
-tr > th:nth-child(1) {
-    display: block;
-    margin: 0 0 0 13px;
-}
-tr > th:nth-child(6) {
-    display: block;
-    margin: 0 12px 0 0;
-}
-tr > th {
-    padding: 0 0 8px 0;
-}
-tr:nth-child(2) > td {
-    border-top: solid 1px #F1F1F1;
-}
-#selected > td { 
-    border-top: solid 1px #F1F1F1;
-    border-bottom: solid 1px #F1F1F1;
-}
-#selected > td:nth-child(1) { border-left: solid 1px #F1F1F1; }
-#selected > td:nth-child(6) { border-right: solid 1px #F1F1F1; }
-#selected > td:first-child { border-top-left-radius: 10px; }
-#selected > td:last-child { border-top-right-radius: 10px; }
-#selected > td:first-child { border-bottom-left-radius: 10px; }
-#selected > td:last-child { border-bottom-right-radius: 10px; }
-#selected > td {
-    background-color: #3361FF;
-    color: #FFFFFF;
-}
-#selected > .extension > span {
-    color: #3361FF;
-}
 #additional {
     display: flex;
     flex-direction: column;
@@ -150,6 +119,10 @@ tr:nth-child(2) > td {
     top: 3px;
     left: 1px;
 }
+#additional1 > span:last-child {
+    position: relative;
+    bottom: 1px;
+}
 #additional2 > span:nth-child(3) {
     display: block;
     margin: 20px 0 0 0;
@@ -163,7 +136,7 @@ tr:nth-child(2) > td {
     margin: 24px 0 0 0;
 }
 #rating {
-    margin: 11px 0 0 0;
+    margin: 9px 0 0 0;
 }
 #rating > span {
     margin: 0 18px 0 0;
@@ -195,6 +168,9 @@ tr:nth-child(2) > td {
 }
 .gray {
     color: #A2A6B6;
+}
+.blue {
+    color: #3361FF;
 }
 .font_11_13 {
     font: 11px Roboto;
@@ -439,31 +415,82 @@ h3#path {
 .usual {
     color: black;
 }
-
-table {
+#table > div > span {
+    padding: 0 0 9px 0;
+}
+#selected > span, #selected > div { 
+    border-top: solid 1px #F1F1F1;
+    border-bottom: solid 1px #F1F1F1;
+    background-color: #3361FF;
+    color: #FFFFFF;
+}
+#selected > div:first-child { border-left: solid 1px #F1F1F1; }
+#selected > span:last-child { border-right: solid 1px #F1F1F1; }
+#selected > div:first-child { border-top-left-radius: 10px; }
+#selected > span:last-child { border-top-right-radius: 10px; }
+#selected > div:first-child { border-bottom-left-radius: 10px; }
+#selected > span:last-child { border-bottom-right-radius: 10px; }
+#selected > .extension > span {
+    color: #3361FF;
+}
+#table {
+    display: table;
     text-align: left;
 }
 
-table > tr > th:nth-child(1) {
+#table > div {
+    display: table-row;
+}
+#table > div > span {
+    border-bottom: 1px solid #F1F1F1;
+}
+#table > a {
+    display: table-row;
+    position: relative;
+    bottom: 2px;
+    color: #000;
+}
+#table > a > span:nth-child(1) {
+    display: flex;
+}
+#table > a > span {
+    display: table-cell;
+    vertical-align: middle;
+}
+#table > div > span {
+    display: table-cell;
+}
+
+#table > div > span:nth-child(1) {
+    display: block;
+    margin: 0 0 0 13px;
+}
+
+#table > div > span:nth-child(6) {
+    display: block;
+    margin: 0 12px 0 0;
+}
+
+#table > div > span:nth-child(1) {
     width: 65px;
 }
 
-table > tr > th:nth-child(2) {
+#table > div > span:nth-child(2) {
     width: 644px;
 }
 
-table > tr > th:nth-child(3) {
+#table > div > span:nth-child(3) {
     width: 176px;
 }
 
-table > tr > th:nth-child(4) {
+#table > div > span:nth-child(4) {
     width: 137px;
 }
 
-table > tr > th:nth-child(5) {
+#table > div > span:nth-child(5) {
     width: 116px;
 }
-table > tr > th:nth-child(6) {
+#table > div > span:nth-child(6) {
     width: 84px;
 }
 
@@ -488,7 +515,7 @@ table > tr > th:nth-child(6) {
 
 .extension > span {
     position: absolute;
-    margin: 10px 0 0 0;
+    margin: 11px 0 0 0;
     color: white;
     font-size: 12px;
     font-weight: bold;
@@ -501,4 +528,22 @@ table > tr > th:nth-child(6) {
 
 #selected > .extension {
     padding-right: 21px;
+}
+
+#download {
+    display: block;
+    max-height: 48px;
+    max-width: 262px;
+    border: 1px solid #3361FF;
+    margin: 23px 0 0 0;
+    padding: 12px 0 11px 0;
+    border-radius: 10px;
+}
+#download > img {
+    margin: 2px 0 0 18px;
+}
+#download > span {
+    position: relative;
+    bottom: 2px;
+    margin: 0 0 2px 60px;
 }
